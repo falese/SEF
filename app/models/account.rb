@@ -10,6 +10,9 @@
 #  meta         :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  item         :string
+#  type         :string
+#  sub_type     :string
 #
 
 class Account < ActiveRecord::Base
