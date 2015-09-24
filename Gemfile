@@ -6,7 +6,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.4'
 # gem 'sqlite3'
 gem 'pg'
-gem "omniauth-google-oauth2"
+gem "omniauth-google-oauth2","~>0.2.1"
 
 #front end tools
 # Use SCSS for stylesheets
