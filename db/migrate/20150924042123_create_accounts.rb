@@ -1,0 +1,13 @@
+class CreateAccounts < ActiveRecord::Migration
+  def change
+    create_table :accounts do |t|
+      t.string :account_name
+      t.decimal :real_balance
+      t.decimal :calc_balance
+      t.references :user, index: true, foreign_key: true
+      t.string :meta
+
+      t.timestamps null: false
+    end
+  end
+end

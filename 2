@@ -1,0 +1,7 @@
+      invoke  active_record
+      remove    db/migrate/20150924042044_create_accounts.rb
+      create    db/migrate/20150924042123_create_accounts.rb
+   identical    app/models/account.rb
+      invoke    test_unit
+   identical      test/models/account_test.rb
+       force      test/fixtures/accounts.yml
