@@ -5,6 +5,7 @@ def index
 end
 
 def show
+  @user = User.find(get_user)
 end
 
 def new
@@ -21,10 +22,16 @@ def create
 end
 
 def edit
+  @user= get_user
 end
 
 def update
-
+@user= get_user
+  if @user.update(user_params)
+    redirect_to @user
+  else
+    render 'edit'
+  end
 end
 
 def destroy
@@ -36,6 +43,7 @@ private
 
 
 def get_user
+  @user = User.find(params[:id])
 end
 
 def user_params
