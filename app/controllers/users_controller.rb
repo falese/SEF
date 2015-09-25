@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+helper_method :connect_plaid
 def index
   @users = User.all
 end
@@ -14,7 +14,7 @@ end
 
 def create
   @user = User.new(user_params)
-  if @user.save
+  if @user.save && connect_plaid
     redirect_to users_path
   else
     render 'new'
@@ -27,7 +27,7 @@ end
 
 def update
 @user= get_user
-  if @user.update(user_params)
+  if @user.update(user_params)&& connect_plaid
     redirect_to @user
   else
     render 'edit'
@@ -40,6 +40,16 @@ end
 end
 
 private
+
+def connect_plaid
+@user = get_user
+p_user = Plaid.add_user('auth',@user.bank_user_name,@user.bank_password, @user.bank)
+  if @user.update_attribute(:token_id,p_user.access_token)
+    flash[:notice] = "You have successfully connected!"
+  else
+    flash[:notice] = "Please try again"
+  end
+end
 
 
 def get_user
