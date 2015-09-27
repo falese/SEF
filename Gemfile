@@ -7,6 +7,7 @@ gem 'rails', '4.2.4'
 # gem 'sqlite3'
 gem 'pg'
 gem "omniauth-google-oauth2","~>0.2.1"
+gem 'bcrypt', :require => 'bcrypt'
 
 #front end tools
 # Use SCSS for stylesheets

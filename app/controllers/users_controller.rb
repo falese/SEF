@@ -1,3 +1,5 @@
+require 'bcrypt'
+
 class UsersController < ApplicationController
 helper_method :connect_plaid
 def index
@@ -14,7 +16,7 @@ end
 
 def create
   @user = User.new(user_params)
-  if @user.save && connect_plaid
+  if @user.save && connect_plaid && encrypt_cred
     redirect_to users_path
   else
     render 'new'
@@ -27,7 +29,7 @@ end
 
 def update
 @user= get_user
-  if @user.update(user_params)&& connect_plaid
+  if @user.update(user_params)&& connect_plaid && encrypt_cred
     redirect_to @user
   else
     render 'edit'
@@ -40,6 +42,19 @@ end
 end
 
 private
+
+def encrypt_cred
+s1 = BCrypt::Engine.generate_salt
+s2 = BCrypt::Engine.generate_salt
+
+encrypted_pw = BCrypt::Engine.hash_secret(@user.bank_password, s1)
+encrypted_bn = BCrypt::Engine.hash_secret(@user.bank_user_name, s2)
+
+@user.update_attribute(:bank_user_name, encrypted_bn)
+@user.update_attribute(:bank_password, encrypted_pw)
+
+end
+
 
 def connect_plaid
 @user = get_user
