@@ -4,6 +4,7 @@
   </div>
 <div class="col-md-4">
 <%= @user.token_id %>
+<%= link_to 'Add Accounts', new_user_account_path(@user, @account), class:'btn btn-default btn-large' %>
 </div>
 
 <div class="col-md-4">
@@ -21,13 +22,13 @@
       <th>Balance</th>
       <th>Projected Balance</th>
     </tr>
-    <!--Insert account iteration here-->
+    <% @user.accounts.each do |account| %>
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><%=account.account_name %></td>
+        <td><%=account.real_balance %></td>
+        <td><%=account.calc_balance %></td>
       </tr>
-
+      <% end %>
     </table>
   </div>
   <p>

@@ -8,6 +8,7 @@ gem 'rails', '4.2.4'
 gem 'pg'
 gem "omniauth-google-oauth2","~>0.2.1"
 gem 'bcrypt', :require => 'bcrypt'
+gem 'rest-client', '~> 1.8.0'
 
 #front end tools
 # Use SCSS for stylesheets

@@ -1,0 +1,8 @@
+<%= simple_form_for [@user, @account] do |f| %>
+<%= f.input :account_name %>
+<%= f.input :real_balance %>
+<%= f.input :calc_balance %>
+<%= f.input :sub_type %>
+
+<%= f.submit "Submit".html_safe, class: "btn btn-danger btn-large" %>
+<% end %>
