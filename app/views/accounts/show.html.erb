@@ -1,0 +1,25 @@
+<%= @account.account_name %>
+
+<%= @account.calc_balance %>
+<%= link_to 'Add Transactions', new_account_transaction_path(@account, @transaction), class:'btn btn-default btn-large' %>
+</div>
+
+<div class ="table-responsive">
+  <table class="table table-hover">
+    <tr>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Amount</th>
+      <th>Account</th>
+    </tr>
+
+      <% @account.transactions.each do |transaction| %>
+    <tr>
+      <td><%=transaction.date %></td>
+      <td> <%=transaction.description %></td>
+      <td> <%=transaction.amount %></td>
+      <td> <%=transaction.account %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>

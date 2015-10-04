@@ -13,7 +13,10 @@ resources :sessions, only: [:create, :destroy]
 
   root 'static_pages#home'
   resources :users do
-    resources :accounts
+    resources :accounts do
+      resources :transactions
+      end
+    end
   end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -63,4 +66,3 @@ resources :sessions, only: [:create, :destroy]
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end

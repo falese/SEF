@@ -1,0 +1,8 @@
+<%= simple_form_for [@account, @transaction] do |f| %>
+<%= f.input :description %>
+<%= f.input :amount %>
+<%= f.input :date %>
+
+
+<%= f.submit "Submit".html_safe, class: "btn btn-danger btn-large" %>
+<% end %>
