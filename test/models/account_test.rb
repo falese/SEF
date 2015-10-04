@@ -11,7 +11,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  item         :string
-#  type         :string
+#  account_type :string
 #  sub_type     :string
 #
 

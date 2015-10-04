@@ -11,8 +11,10 @@ resources :sessions, only: [:create, :destroy]
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
+
   root 'static_pages#home'
   resources :users do
+    get 'api_accounts', to: "users#api_accounts"
     resources :accounts do
       resources :transactions
       end
