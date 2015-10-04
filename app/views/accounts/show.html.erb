@@ -1,7 +1,7 @@
 <%= @account.account_name %>
 
 <%= @account.calc_balance %>
-<%= link_to 'Add Transactions', new_account_transaction_path(@account, @transaction), class:'btn btn-default btn-large' %>
+<%= link_to 'Add Transactions', new_user_account_transaction_path(@account.user_id,@account.id, @transaction), class:'btn btn-default btn-large' %>
 </div>
 
 <div class ="table-responsive">
@@ -18,7 +18,7 @@
       <td><%=transaction.date %></td>
       <td> <%=transaction.description %></td>
       <td> <%=transaction.amount %></td>
-      <td> <%=transaction.account %></td>
+      <td> <%=transaction.account.account_name %></td>
     </tr>
     <% end %>
   </table>

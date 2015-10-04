@@ -1,0 +1,17 @@
+<div class ="table-responsive">
+  <table class="table table-hover">
+
+    <tr>
+      <th>Account Name</th>
+      <th>Balance</th>
+      <th>Projected Balance</th>
+    </tr>
+    <% @user.accounts.each do |account| %>
+      <tr>
+        <td><%=link_to account.account_name,user_account_transactions_path(@user, account.id) %></td>
+        <td><%=account.real_balance %></td>
+        <td><%=account.calc_balance %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>

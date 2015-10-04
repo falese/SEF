@@ -26,7 +26,7 @@
     </tr>
     <% @user.accounts.each do |account| %>
       <tr>
-        <td><%=account.account_name %></td>
+        <td><%=link_to account.account_name, user_account_path(@user, account.id) %></td>
         <td><%=account.real_balance %></td>
         <td><%=account.calc_balance %></td>
       </tr>

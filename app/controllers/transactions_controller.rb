@@ -8,11 +8,14 @@ def index
 end
 
 def new
-  @account = Account.find(:account_id)
+  @user = User.find(params[:user_id])
+  @account = Account.find(params[:account_id])
+  @transaction = @account.transactions.build
 end
 
 def create
-  @account = Account.find(:account_id)
+  @user = User.find(params[:user_id])
+  @account = Account.find(params[:account_id])
   @transaction = @account.transactions.create(transaction_params)
   if @transaction.save
     redirect_to user_path(@user)
