@@ -2,6 +2,8 @@
 
 <%= @account.calc_balance %>
 <%= link_to 'Add Transactions', new_user_account_transaction_path(@account.user_id,@account.id, @transaction), class:'btn btn-default btn-large' %>
+<%= link_to 'Calculate Balance', user_account_calculate_balance_path(@account.user_id,@account.id), class:'btn btn-default btn-large' %>
+
 </div>
 
 <div class ="table-responsive">

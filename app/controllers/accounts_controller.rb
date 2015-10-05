@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+helper_method:calculate_balance
 
   def index
     @user = User.find(params[:user_id])
@@ -31,16 +32,23 @@ class AccountsController < ApplicationController
   def update
     @user = User.find(params[:user_id])
     @account = get_account
-    if @account.update(account_params)
+    if @account.update(account_params) && calculate_balance
       redirect_to user_path(@user)
     else
       render 'edit'
+    end
   end
 
   def destroy
   end
 
+  def calculate_balance
+    @account = Account.find(params[:account_id])
+    sum = -Transaction.where(account_id: @account.id).sum(:amount)
+    @account.update_attribute(:calc_balance, sum + @account.real_balance)
+    redirect_to user_path(@account.user_id)
   end
+
   private
 
   def account_params
@@ -50,5 +58,7 @@ class AccountsController < ApplicationController
   def get_account
     @account = Account.find(params[:id])
   end
+
+
 
 end

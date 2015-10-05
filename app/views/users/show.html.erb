@@ -3,15 +3,18 @@
   <h1 style="color:red; font-family: 'Roboto', sans-serif;"><%= @user.try(:user_name)%></h1>
   </div>
 <div class="col-md-4">
-<%= @user.try(:token_id) %>
 
-
+<% if @user.accounts.empty? %>
 <%= link_to 'Add External Accounts', user_api_accounts_path(@user), class:'btn btn-default btn-large' %>
+<% end %>
+
+
+
 </div>
 
 <div class="col-md-4">
 </div>
-<div class="col-md-4">
+<div class="col-md-8">
   <p>
 <h3 style="font-family: 'Roboto', sans-serif;"><strong>Accounts</strong></h3>
 
@@ -29,11 +32,13 @@
         <td><%=link_to account.account_name, user_account_path(@user, account.id) %></td>
         <td><%=account.real_balance %></td>
         <td><%=account.calc_balance %></td>
+        <td><%= link_to 'Add Transaction', new_user_account_transaction_path(account.user_id,account.id, @transaction), class:'btn btn-default btn-large' %>
+        <td><%= link_to 'Refresh', user_account_calculate_balance_path(account.user_id,account.id), class:'btn btn-default btn-large' %> </td>
       </tr>
       <% end %>
     </table>
   </div>
   <p>
-<h3 style="font-family: 'Roboto', sans-serif;"><strong>Transactions</strong></h3>
+<h3 style="font-family: 'Roboto', sans-serif;"><strong>Transactions to Review</strong></h3>
 
 </p>
