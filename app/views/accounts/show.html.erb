@@ -1,45 +1,51 @@
 
 <div class="container">
   <div class="col-xs-12">
-  <h1> <%= @account.account_name %></h1>
-</div>
+    <p>
+      <h1> <%= @account.account_name %></h1>
+    </p>
+  </div>
 
-<div class="col-xs-12"><br /><br />
-<h3>Current Balance<br />
+  <div class="col-xs-12">
+    <p>
+      <h3>Current Balance</h3>
+    </p>
+    <p>
+      <%= number_to_currency(@account.real_balance) %>
+    </p>
+    <p>
+      <h3>Available Balance</h3>
+    </p>
+    <p>
+      <%= number_to_currency(@account.calc_balance) %>
+    </p>
+  </div>
 
-<%= number_to_currency(@account.real_balance) %></h3>
-</div>
+  <div>
+    <p>
+    <%= link_to 'Add Transactions', new_user_account_transaction_path(@account.user_id,@account.id, @transaction), class:'btn btn-default btn-large' %>
+    <%= link_to 'Calculate Balance', user_account_calculate_balance_path(@account.user_id,@account.id), class:'btn btn-default btn-large' %>
+    <%= link_to 'Go Back', user_path(@account.user_id), class: "btn btn-default btn-large" %>
 
-
-<div class="col-xs-12"><br /><br />
-<h3>Available Balance<br />
-
-<%= number_to_currency(@account.calc_balance) %></h3>
-</div>
-
-<div>
-<%= link_to 'Add Transactions', new_user_account_transaction_path(@account.user_id,@account.id, @transaction), class:'btn btn-default btn-large' %>
-<%= link_to 'Calculate Balance', user_account_calculate_balance_path(@account.user_id,@account.id), class:'btn btn-default btn-large' %>
-<%= link_to 'Go Back', user_path(@account.user_id), class: "btn btn-default btn-large" %>
-<br />
-</div>
-<br />
-<div class ="table-responsive">
-  <table class="table table-hover">
-    <tr>
-      <th>Date</th>
-      <th>Description</th>
-      <th>Amount</th>
-      <th>Account</th>
-    </tr>
-
-      <% @account.transactions.each do |transaction| %>
-    <tr>
-      <td><%=transaction.date %></td>
-      <td> <%=transaction.description %></td>
-      <td> <%=number_to_currency(-transaction.amount) %></td>
-      <td> <%=transaction.account.account_name %></td>
+    </p>
+  </div>
+  <div class ="table-responsive">
+    <table class="table table-hover">
+      <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Account</th>
       </tr>
-    <% end %>
-  </table>
+
+        <% @account.transactions.each do |transaction| %>
+      <tr>
+        <td><%=transaction.date %></td>
+        <td> <%=transaction.description %></td>
+        <td> <%=number_to_currency(-transaction.amount) %></td>
+        <td> <%=transaction.account.account_name %></td>
+        </tr>
+      <% end %>
+    </table>
+</div>
 </div>
