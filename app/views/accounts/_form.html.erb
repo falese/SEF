@@ -4,5 +4,6 @@
 <%= f.input :calc_balance %>
 <%= f.input :sub_type %>
 
+<%= link_to 'Go Back', user_path(@account.user_id), class: "btn btn-danger btn-large" %>
 <%= f.submit "Submit".html_safe, class: "btn btn-danger btn-large" %>
 <% end %>

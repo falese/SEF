@@ -31,6 +31,11 @@ class TransactionsController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:user_id])
+    @account = Account.find(params[:account_id])
+    @transaction = @user.account.transactions.find(params[:id])
+    @transaction.destroy
+    redirect_to user_path(@user)
   end
 
 private

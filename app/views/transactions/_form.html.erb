@@ -1,8 +1,20 @@
+
+
+<div class="container">
+
+<div class="col-md-8">
+  <p>
+    <br />
+    <br />
+<h3><strong>Add a Transaction</strong></h3>
 <%= simple_form_for [@user,@account, @transaction] do |f| %>
 <%= f.input :description %>
 <%= f.input :amount %>
 <%= f.input :date %>
 
-
-<%= f.submit "Submit".html_safe, class: "btn btn-danger btn-large" %>
+<%= link_to 'Go Back', user_path(@account.user_id), class: "btn btn-default btn-large" %>
+<%= f.submit "Submit".html_safe, class: "btn btn-default btn-large" %>
 <% end %>
+</p>
+</div>
+</div>

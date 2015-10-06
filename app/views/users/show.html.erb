@@ -1,6 +1,7 @@
 <div class="container">
+
   <div class="col-xs-12">
-  <h1 style="color:red; font-family: 'Roboto', sans-serif;"><%= @user.try(:user_name)%></h1>
+  <h1><%= @user.try(:user_name)%></h1>
   </div>
 <div class="col-md-4">
 
@@ -16,7 +17,7 @@
 </div>
 <div class="col-md-8">
   <p>
-<h3 style="font-family: 'Roboto', sans-serif;"><strong>Accounts</strong></h3>
+<h3><strong>Accounts</strong></h3>
 
 </p>
 <div class ="table-responsive">
@@ -30,8 +31,8 @@
     <% @user.accounts.each do |account| %>
       <tr>
         <td><%=link_to account.account_name, user_account_path(@user, account.id) %></td>
-        <td><%=account.real_balance %></td>
-        <td><%=account.calc_balance %></td>
+        <td><%=link_to number_to_currency(account.real_balance), user_account_path(@user, account.id) %></td>
+        <td><%=link_to number_to_currency(account.calc_balance) , user_account_path(@user, account.id) %></td>
         <td><%= link_to 'Add Transaction', new_user_account_transaction_path(account.user_id,account.id, @transaction), class:'btn btn-default btn-large' %>
         <td><%= link_to 'Refresh', user_account_calculate_balance_path(account.user_id,account.id), class:'btn btn-default btn-large' %> </td>
       </tr>
@@ -39,6 +40,6 @@
     </table>
   </div>
   <p>
-<h3 style="font-family: 'Roboto', sans-serif;"><strong>Transactions to Review</strong></h3>
+<h3 style="font-family: 'Roboto', sans-serif;"><strong></strong></h3>
 
 </p>

@@ -1,0 +1,49 @@
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style="background:black; color:green;  ">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+            </a>
+            <% if current_user %>
+              Hey, <strong><%= current_user.user_name %></strong>!
+              <br />
+              <%= link_to "Sign out", signout_path, id: "sign_out",class:'btn btn-default btn-xs'%>
+            <% else %>
+              <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in",class:'btn btn-default btn-xs' %>
+            <% end %>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+
+            <ul class="nav navbar-nav">
+                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+
+                <li class="hidden">
+                  <% if current_user %>
+                    Hey, <strong><%= current_user.user_name %></strong>!
+                    <br />
+                    <%= link_to "Sign out", signout_path, id: "sign_out",class:'btn btn-default btn-xs'%>
+                  <% else %>
+                    <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in",class:'btn btn-default btn-xs' %>
+                  <% end %>
+                </li>
+                <li>
+                    <%= link_to "Home", user_path(current_user.id),class:'btn btn-default btn-xs' %>
+                </li>
+                <li>
+                </li>
+                <% if current_user.accounts.empty? %>
+                <%= link_to 'Add External Accounts', user_api_accounts_path(current_user.id), class:'btn btn-default btn-xs' %>
+                <% end %>
+                <li>
+
+                </li>
+            </ul>
+
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
