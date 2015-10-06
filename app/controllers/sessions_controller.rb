@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
    if user.token_id.nil?
      redirect_to edit_user_path(user)
    else
-    redirect_to user_path(user)
+    redirect_to user_path(user) 
     end
   end
 
