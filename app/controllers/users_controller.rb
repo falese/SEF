@@ -2,6 +2,10 @@ require 'bcrypt'
 
 class UsersController < ApplicationController
   helper_method :connect_plaid
+  before_filter :login_required
+
+
+
   def index
     @users = User.all
   end

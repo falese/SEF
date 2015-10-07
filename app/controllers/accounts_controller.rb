@@ -1,5 +1,7 @@
 class AccountsController < ApplicationController
-helper_method:calculate_balance
+include Custom
+
+before_filter :login_required
 
   def index
     @user = User.find(params[:user_id])
@@ -42,12 +44,12 @@ helper_method:calculate_balance
   def destroy
   end
 
-  def calculate_balance
-    @account = Account.find(params[:account_id])
-    sum = -Transaction.where(account_id: @account.id).sum(:amount)
-    @account.update_attribute(:calc_balance, sum + @account.real_balance)
-    redirect_to user_path(@account.user_id)
-  end
+  # def calculate_balance
+  #   @account = Account.find(params[:account_id])
+  #   sum = -Transaction.where(account_id: @account.id).sum(:amount)
+  #   @account.update_attribute(:calc_balance, sum + @account.real_balance)
+  #   redirect_to user_path(@account.user_id)
+  # end
 
   private
 

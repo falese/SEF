@@ -1,4 +1,7 @@
 class TransactionsController < ApplicationController
+  before_filter :login_required
+  include Custom
+
 
   def show
     @transaction = get_transaction
@@ -18,7 +21,7 @@ class TransactionsController < ApplicationController
     @account = Account.find(params[:account_id])
     @transaction = @account.transactions.create(transaction_params)
     if @transaction.save
-      redirect_to user_path(@user)
+      calculate_balance
     else
       render 'new'
     end
