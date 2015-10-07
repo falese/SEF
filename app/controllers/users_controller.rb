@@ -3,7 +3,7 @@ require 'bcrypt'
 class UsersController < ApplicationController
   helper_method :connect_plaid
   before_filter :login_required
-
+  include Custom
 
 
   def index
@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
   def show
     @user = get_user
+    calculate_balances
   end
 
   def new
