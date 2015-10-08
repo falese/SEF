@@ -33,9 +33,9 @@ class Account < ActiveRecord::Base
     real_balance = account["balance"]["available"]
     account_type = account["type"]
     sub_type = account["subtype"]
-    calc_balance = real_balance
+
     account = Account.create(account_name: account_name, meta:
-    meta, real_balance: real_balance, account_type: account_type, sub_type: sub_type, user_id: user.id)
+    meta, real_balance: real_balance, account_type: account_type, sub_type: sub_type, user_id: user.id, calc_balance: real_balance)
     return account
 
   end
