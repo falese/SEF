@@ -11,7 +11,9 @@ module Custom
   def calculate_balances
     @accounts = @user.accounts
     @accounts.each do |a|
-      a.update_attribute(:real_balance, 0)
+        if a.real_balance == nil
+          a.update_attribute(:real_balance, 0)
+        end
       sum = -Transaction.where(account_id: a.id).sum(:amount)
       a.update_attribute(:calc_balance, sum + a.real_balance)
     end
