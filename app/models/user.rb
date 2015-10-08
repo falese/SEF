@@ -34,9 +34,9 @@ class User < ActiveRecord::Base
 
 
   def pull_accounts#this connects to plaid/balance API and passes client_id (from user setup) to return a string of all accounts
-    client_id = "55d6613794aec9e057dbea50"
-    secret = "d170dcb9b01005357ae6a5b1f0df81"
-    api_url = "https://tartan.plaid.com/balance"
+    client_id = ENV["plaid_customer_id"]
+    secret = ENV["plaid_secret"]
+    api_url = ENV["plaid_environment"]
     get_data = RestClient.post(api_url, client_id: client_id, secret: secret, access_token: self.token_id)
 
     api_account_data = JSON.parse(get_data)["accounts"]
