@@ -29,12 +29,14 @@
       <th>Projected Balance</th>
     </tr>
     <% @user.accounts.each do |account| %>
+      <% if account.real_balance != 0 %>
       <tr>
         <td><%=link_to account.account_name, user_account_path(@user, account.id) %></td>
-        <td><%=link_to number_to_currency(account.real_balance), user_account_path(@user, account.id) %></td>
+        <td><<%=link_to number_to_currency(account.real_balance), user_account_path(@user, account.id) %></td>
         <td><%=link_to number_to_currency(account.calc_balance) , user_account_path(@user, account.id) %></td>
         <td><%= link_to 'Add Transaction', new_user_account_transaction_path(account.user_id,account.id, @transaction), class:'btn btn-default btn-large' %>
       </tr>
+      <% end %>
       <% end %>
     </table>
   </div>
