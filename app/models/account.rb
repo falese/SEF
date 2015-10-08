@@ -31,11 +31,8 @@ class Account < ActiveRecord::Base
     account_name = account["meta"]["name"]
     meta = account ["meta"]["number"]
     real_balance = account["balance"]["available"]
-    if real_balance.nil?
-      real_balance == 0.to_s.to_d
-    end
     account_type = account["type"]
-    sub_type = account["subtype"]
+    sub_type = account["subtype"]["depository"]
     calc_balance = real_balance
     account = Account.create(account_name: account_name, meta:
     meta, real_balance: real_balance, account_type: account_type, sub_type: sub_type, user_id: user.id)
