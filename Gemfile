@@ -9,7 +9,7 @@ gem 'pg'
 gem "omniauth-google-oauth2","~>0.2.1"
 gem 'bcrypt', :require => 'bcrypt'
 gem 'rest-client', '~> 1.8.0'
-
+gem 'figaro'
 #front end tools
 # Use SCSS for stylesheets
 # Use Uglifier as compressor for JavaScript assets

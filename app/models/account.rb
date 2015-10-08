@@ -19,27 +19,28 @@ class Account < ActiveRecord::Base
   belongs_to :user
   has_many :transactions
 
-def self.populate_user_bank_accounts(user, api_account_data)
+  def self.populate_user_bank_accounts(user, api_account_data)
 
-api_account_data.each do |account|
-  Account.create_bank_account(account,user)
+  api_account_data.each do |account|
+    Account.create_bank_account(account,user)
+    end
   end
-end
 
-def self.create_bank_account(account,user)
+  def self.create_bank_account(account,user)
 
-  account_name = account["meta"]["name"]
-  meta = account ["meta"]["number"]
-  real_balance = account["balance"]["available"]
-  account_type = account["type"]
-  sub_type = account["subtype"]
+    account_name = account["meta"]["name"]
+    meta = account ["meta"]["number"]
+    real_balance = account["balance"]["available"]
+    account_type = account["type"]
+    sub_type = account["subtype"]
 
-  account = Account.create(account_name: account_name, meta:
-  meta, real_balance: real_balance, account_type: account_type, sub_type: sub_type, user_id: user.id)
-  return account
+    account = Account.create(account_name: account_name, meta:
+    meta, real_balance: real_balance, account_type: account_type, sub_type: sub_type, user_id: user.id)
+    return account
 
-end
+  end
 
-
+  def self.update_bank_balance(user, api_account_data)
+  end
 
 end
