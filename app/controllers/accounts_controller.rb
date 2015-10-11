@@ -32,7 +32,7 @@ before_filter :login_required
   end
 
   def update
-    @user = user
+    @user = User.find(params[:user_id])
     @account = account
     if @account.update(account_params) && calculate_balance
       redirect_to user_path(@user)
