@@ -23,7 +23,8 @@ class Account < ActiveRecord::Base
       api_account_data.each do |account|
         if Account.where(bank_account_id: account["_id"]).find_each != nil
           acct = Account.find_by(bank_account_id: account["_id"])
-          acct.update(real_balance: account["balance"]["available"])
+          acct.update_attribute(:real_balance, account["balance"]["available"])
+          binding.pry
         else
            Account.create_bank_account(account,user)
       end
@@ -44,7 +45,7 @@ class Account < ActiveRecord::Base
     return account
   end
 
-  
+
 
 
 end
