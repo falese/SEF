@@ -27,7 +27,7 @@ class Account < ActiveRecord::Base
         # else
            Account.create_bank_account(account,user)
     #   end
-    # end
+    end
   end
 
   def self.create_bank_account(account,user)
