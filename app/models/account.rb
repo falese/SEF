@@ -21,12 +21,12 @@ class Account < ActiveRecord::Base
 
   def self.populate_user_bank_accounts(user, api_account_data)
       api_account_data.each do |account|
-        # if Account.where(bank_account_id: account["_id"]).find_each != nil
-        #     acct = Account.find_by(bank_account_id: account["_id"])
-        #     Account.update_bank_account(account, user, acct)
-        # else
+        if Account.where(bank_account_id: account["_id"]).find_each != nil
+            acct = Account.find_by(bank_account_id: account["_id"])
+            Account.update_bank_account(account, user, acct)
+        else
            Account.create_bank_account(account,user)
-    #   end
+      end
     end
   end
 
