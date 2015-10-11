@@ -31,13 +31,20 @@ before_filter :login_required
     @account = get_account
   end
 
-  def update
-    @user = User.find(params[:user_id])
-    @account = get_account
-    if @account.update(account_params) && calculate_balance
-      redirect_to user_path(@user)
-    else
-      render 'edit'
+  def update(real_balance, user, acct)
+    @user = user.id
+    @account = acct.id
+      if @account.update_column(:real_balance, real_balance) && calculate_balance
+        redirect_to user_path(@user)
+      else
+        render 'edit'
+
+    # @user = User.find(params[:user_id])
+    # @account = get_account
+    # if @account.update(account_params) && calculate_balance
+    #   redirect_to user_path(@user)
+    # else
+    #   render 'edit'
     end
 
 
