@@ -9,7 +9,7 @@
 <%= simple_form_for @user do |f| %>
 <%= f.input :email %>
 <%= f.input :user_name %>
-<%= f.input :bank %>
+<%= select_tag :bank,     options_for_select([['Wells Fargo',"wells"],['Fidelity',"fidelity"],['Charles Schwab',"schwab"]])%>
 <%= f.input :bank_user_name %>
 <%= f.input :bank_password %>
 <%= f.submit "Submit".html_safe, class: "btn btn-danger btn-large" %>

@@ -8,6 +8,7 @@ module Custom
     @account.update_attribute(:calc_balance, sum + @account.real_balance)
     redirect_to user_path(@account.user_id)
   end
+
   def calculate_balances
     @accounts = @user.accounts
     @accounts.each do |a|
@@ -18,6 +19,20 @@ module Custom
       a.update_attribute(:calc_balance, sum + a.real_balance)
     end
   end
+
+  def refresh_balance
+    
+    #hit endpoint and bring in new balances
+      #find access token by the current user
+      #send access token to endpoint
+      #return JSON
+      #parse JSON
+      #pass data to account model
+    #update balances by account
+      #find the account
+      #update the account
+  end
+
 
 
 end

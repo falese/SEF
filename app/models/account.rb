@@ -20,9 +20,13 @@ class Account < ActiveRecord::Base
   has_many :transactions
 
   def self.populate_user_bank_accounts(user, api_account_data)
-
-  api_account_data.each do |account|
-    Account.create_bank_account(account,user)
+      api_account_data.each do |account|
+        if Account.where(bank_account_id: account["_id"]).find_each != nil
+          acct = Account.find_by(bank_account_id: account["_id"])
+          acct.update(real_balance: account["balance"]["available"])
+        else
+           Account.create_bank_account(account,user)
+      end
     end
   end
 
@@ -32,15 +36,15 @@ class Account < ActiveRecord::Base
     meta = account ["meta"]["number"]
     real_balance = account["balance"]["available"]
     account_type = account["type"]
-    sub_type = account["subtype"]["depository"]
+    sub_type = account["subtype"]
     calc_balance = real_balance
+    bank_id = account["_id"]
     account = Account.create(account_name: account_name, meta:
-    meta, real_balance: real_balance, account_type: account_type, sub_type: sub_type, user_id: user.id)
+    meta, real_balance: real_balance, account_type: account_type, sub_type: sub_type, user_id: user.id, bank_account_id: bank_id)
     return account
-
   end
 
-  def self.update_bank_balance(user, api_account_data)
-  end
+  
+
 
 end

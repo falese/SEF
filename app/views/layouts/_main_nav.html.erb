@@ -35,7 +35,11 @@
                 <li>
                 </li>
                 <% if current_user.accounts.empty? %>
-                <%= link_to 'Add External Accounts', user_api_accounts_path(current_user.id), class:'btn btn-default btn-xs' %>
+
+                <%= link_to 'Add External Accounts', user_api_accounts_path(current_user), class:'btn btn-default btn-large' %>
+                <% else %>
+                <%= link_to 'Refresh Accounts', user_api_accounts_path(current_user), class:'btn btn-default btn-large' %>
+
                 <% end %>
                 <li>
 

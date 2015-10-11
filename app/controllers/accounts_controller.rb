@@ -32,29 +32,26 @@ before_filter :login_required
   end
 
   def update
-    @user = User.find(params[:user_id])
-    @account = get_account
+    @user = user
+    @account = account
     if @account.update(account_params) && calculate_balance
       redirect_to user_path(@user)
     else
       render 'edit'
     end
+
+
+
   end
 
   def destroy
   end
 
-  # def calculate_balance
-  #   @account = Account.find(params[:account_id])
-  #   sum = -Transaction.where(account_id: @account.id).sum(:amount)
-  #   @account.update_attribute(:calc_balance, sum + @account.real_balance)
-  #   redirect_to user_path(@account.user_id)
-  # end
 
   private
 
   def account_params
-    params.require(:account).permit(:account_name, :real_balance, :calc_balance, :item, :meta, :type, :sub_type)
+    params.require(:account).permit(:account_name, :real_balance, :calc_balance, :item, :meta, :type, :sub_type, :bank_account_id)
   end
 
   def get_account
