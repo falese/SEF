@@ -1,6 +1,6 @@
 module Custom
 
-  def
+  
 
   def calculate_balance
     @account = Account.find(params[:account_id])
@@ -21,7 +21,7 @@ module Custom
   end
 
   def refresh_balance
-    
+
     #hit endpoint and bring in new balances
       #find access token by the current user
       #send access token to endpoint

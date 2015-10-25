@@ -1,7 +1,6 @@
 class AccountsController < ApplicationController
-include Custom
-
 before_filter :login_required
+include Custom
 
   def index
     @user = User.find(params[:user_id])
@@ -10,6 +9,7 @@ before_filter :login_required
 
   def show
     @account = get_account
+    calculate_balance
   end
 
   def new
@@ -65,6 +65,12 @@ before_filter :login_required
     @account = Account.find(params[:id])
   end
 
+  def calculate_balance
+    @account = Account.find(params[:id])
+    sum = -Transaction.where(account_id: @account.id).sum(:amount)
+    @account.update_attribute(:calc_balance, sum + @account.real_balance)
+  
+  end
 
 
 end
