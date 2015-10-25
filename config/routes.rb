@@ -18,7 +18,8 @@ resources :sessions, only: [:create, :destroy]
     get 'api_accounts', to: "users#api_accounts"
     resources :accounts do
       get 'calculate_balance', to: 'accounts#calculate_balance'
-      resources :transactions
+      resources :transactions do
+      end
       end
     end
   end
