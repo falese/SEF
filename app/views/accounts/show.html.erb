@@ -44,6 +44,7 @@
         <td> <%=transaction.description %></td>
         <td> <%=number_to_currency(-transaction.amount) %></td>
         <td> <%=transaction.account.account_name %></td>
+        <td><%=link_to 'Delete', [@account.user, @account, transaction], method: :delete, data: {confirm: 'Are you sure?' },class:'btn btn-default btn-large'%></td>
         </tr>
       <% end %>
     </table>

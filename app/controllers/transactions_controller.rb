@@ -21,7 +21,7 @@ class TransactionsController < ApplicationController
     @account = Account.find(params[:account_id])
     @transaction = @account.transactions.create(transaction_params)
     if @transaction.save
-      redirect_to user_path(@user)
+      redirect_to :back
     else
       render 'new'
     end
@@ -38,7 +38,7 @@ class TransactionsController < ApplicationController
     @account = Account.find(params[:account_id])
     @transaction = @account.transactions.find(params[:id])
     @transaction.destroy
-    redirect_to user_path(@user)
+    redirect_to :back
   end
 
 private
