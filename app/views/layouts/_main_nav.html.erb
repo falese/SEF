@@ -1,4 +1,4 @@
-<nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style="background:black; color:green;  ">
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
@@ -6,7 +6,7 @@
             </button>
             </a>
             <% if current_user %>
-              Hey, <strong><%= current_user.user_name %></strong>!
+              <%= image_tag(current_user.image_url, class:'img-thumbnail img-rounded') %>
               <br />
               <%= link_to "Sign out", signout_path, id: "sign_out",class:'btn btn-default btn-xs'%>
             <% else %>
@@ -22,7 +22,7 @@
 
                 <li class="hidden">
                   <% if current_user %>
-                    Hey, <strong><%= current_user.user_name %></strong>!
+                    <%= image_tag(current_user.image_url, class:'img-thumbnail img-rounded') %>
                     <br />
                     <%= link_to "Sign out", signout_path, id: "sign_out",class:'btn btn-default btn-xs'%>
                   <% else %>
@@ -33,14 +33,15 @@
                     <%= link_to "Home", user_path(current_user.id),class:'btn btn-default btn-xs' %>
                 </li>
                 <li>
+                  <% if current_user.accounts.empty? %>
+
+                  <%= link_to 'Add External Accounts', user_api_accounts_path(current_user), class:'btn btn-default btn-large' %>
+                  <% else %>
+                  <%= link_to 'Refresh Accounts', user_api_accounts_path(current_user), class:'btn btn-default btn-large' %>
+
+                  <% end %>
                 </li>
-                <% if current_user.accounts.empty? %>
 
-                <%= link_to 'Add External Accounts', user_api_accounts_path(current_user), class:'btn btn-default btn-large' %>
-                <% else %>
-                <%= link_to 'Refresh Accounts', user_api_accounts_path(current_user), class:'btn btn-default btn-large' %>
-
-                <% end %>
                 <li>
 
                 </li>

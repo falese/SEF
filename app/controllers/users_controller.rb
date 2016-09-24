@@ -69,6 +69,7 @@ private
 
   def connect_plaid
     @user = get_user
+    
     p_user = Plaid.add_user('auth',@user.bank_user_name,@user.bank_password, @user.bank)
     if @user.update_attribute(:token_id,p_user.access_token)
       flash[:notice] = "You have successfully connected!"

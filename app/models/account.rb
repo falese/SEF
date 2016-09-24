@@ -2,17 +2,18 @@
 #
 # Table name: accounts
 #
-#  id           :integer          not null, primary key
-#  account_name :string
-#  real_balance :decimal(, )
-#  calc_balance :decimal(, )
-#  user_id      :integer
-#  meta         :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  item         :string
-#  account_type :string
-#  sub_type     :string
+#  id              :integer          not null, primary key
+#  account_name    :string
+#  real_balance    :decimal(, )
+#  calc_balance    :decimal(, )      default(0.0)
+#  user_id         :integer
+#  meta            :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  item            :string
+#  account_type    :string
+#  sub_type        :string
+#  bank_account_id :string
 #
 
 class Account < ActiveRecord::Base
@@ -21,6 +22,7 @@ class Account < ActiveRecord::Base
 
   def self.populate_user_bank_accounts(user, api_account_data)
       api_account_data.each do |account|
+      
         if Account.where(bank_account_id: account["_id"]).find_each != nil
             acct = Account.find_by(bank_account_id: account["_id"])
             Account.update_bank_account(account, user, acct)

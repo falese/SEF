@@ -15,6 +15,7 @@
 #  provider         :string
 #  uid              :string
 #  token_id         :string
+#  image_url        :string
 #
 
 require 'test_helper'

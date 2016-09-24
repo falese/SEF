@@ -15,6 +15,7 @@
 #  provider         :string
 #  uid              :string
 #  token_id         :string
+#  image_url        :string
 #
 
 class User < ActiveRecord::Base
@@ -28,6 +29,7 @@ class User < ActiveRecord::Base
       user.uid      = auth.uid
       user.user_name     = auth.info.name
       user.email = auth.info.email
+      user.image_url = auth.info.image
       user.save
     end
   end

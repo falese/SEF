@@ -3,7 +3,7 @@ get 'auth/:provider/callback', to: 'sessions#create'
 get 'auth/failure', to: redirect('/')
 get 'signout', to: 'sessions#destroy', as: 'signout'
 # get 'user/account/calculate_balance' => 'accounts#calculate_balance'
-
+get 'test', to: 'static_pages#test'
 resources :sessions, only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.

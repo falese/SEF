@@ -41,6 +41,7 @@
   <table class="table table-hover">
     <tr>
       <th>Date</th>
+      <th>Account</th>
       <th>Description</th>
       <th>Amount</th>
     </tr>
@@ -49,6 +50,7 @@
         <% if transaction.date <= Date.today %>
             <tr>
                 <td><%=transaction.date %></td>
+                <td><%=transaction.account.account_name  %></td>
                 <td><%=transaction.description %></td>
                 <td><%=number_to_currency(transaction.amount) %></td>
                 <td><%=link_to 'Delete', [@user, acct, transaction], method: :delete, data: {confirm: 'Are you sure?' },class:'btn btn-default btn-large'%></td>
